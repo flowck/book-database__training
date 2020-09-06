@@ -1,1 +1,3 @@
-# hello-react
+# Book Database
+
+A database of books!
