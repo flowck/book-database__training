@@ -1,12 +1,14 @@
-import React, { useState } from "react";
 import "bulma/css/bulma.min.css";
 import "./assets/css/App.scss";
+import React, { useState } from "react";
+import Input from "./components/Input";
+import { LC_BOOKS } from "./utils/constants";
 
 /**
  * List books
  */
 function ListBooks({ list, name }) {
-  const [books, setBooks] = useState(listBooks());
+  const [books] = useState(listBooks());
 
   return (
     <>
@@ -18,29 +20,11 @@ function ListBooks({ list, name }) {
   );
 }
 
-function Input({ type, label, setValue }) {
-  return (
-    <>
-      <div className="field">
-        <label className="label">{label}</label>
-        <div className="control">
-          <input
-            className="input"
-            type={type}
-            onChange={(e) => setValue(e.target.value)}
-          />
-        </div>
-      </div>
-    </>
-  );
-}
-
 /**
  * listBooks
  */
 function listBooks() {
-  const BOOKS = "bd__books";
-  const books = localStorage.getItem(BOOKS);
+  const books = localStorage.getItem(LC_BOOKS);
   return books ? JSON.parse(books) : [];
 }
 
@@ -48,13 +32,12 @@ function listBooks() {
  * saveBook
  */
 function saveBook(title, isbn, publicationDate, description) {
-  const BOOKS = "bd__books";
-  let books = localStorage.getItem(BOOKS);
+  let books = localStorage.getItem(LC_BOOKS);
   books = books
     ? [...JSON.parse(books), { title, isbn, publicationDate, description }]
     : [{ title, isbn, publicationDate, description }];
 
-  localStorage.setItem(BOOKS, JSON.stringify(books));
+  localStorage.setItem(LC_BOOKS, JSON.stringify(books));
 }
 
 /**
