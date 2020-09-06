@@ -2,23 +2,12 @@ import "bulma/css/bulma.min.css";
 import "./assets/css/App.scss";
 import React, { useState } from "react";
 import Input from "./components/Input";
+import ListBooks from "./components/ListBooks";
 import { LC_BOOKS } from "./utils/constants";
 
 /**
  * List books
  */
-function ListBooks({ list, name }) {
-  const [books] = useState(listBooks());
-
-  return (
-    <>
-      <h1>List books</h1>
-      {books.map((book, index) => (
-        <div key={index}>{book.title}</div>
-      ))}
-    </>
-  );
-}
 
 /**
  * listBooks
@@ -82,7 +71,7 @@ function App() {
   return (
     <div className="app-container">
       <h1>Book Database</h1>
-      <ListBooks list={["Hello"]}></ListBooks>
+      <ListBooks data={listBooks()}></ListBooks>
       <RegistBooks saveBook={saveBook}></RegistBooks>
     </div>
   );
