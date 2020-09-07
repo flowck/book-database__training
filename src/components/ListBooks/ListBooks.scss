@@ -1,0 +1,15 @@
+// List books
+.app-list-books {
+  &__title {
+    font-size: 25px;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+
+  &__items {
+    display: grid;
+    grid-row-gap: 40px;
+    grid-column-gap: 20px;
+    grid-template-columns: repeat(auto-fit, 270px);
+  }
+}
