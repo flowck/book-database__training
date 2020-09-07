@@ -1,9 +1,13 @@
-import "bulma/css/bulma.min.css";
+/**
+ * Styles
+ */
 import "./assets/css/App.scss";
-import React, { useState } from "react";
-import Input from "./components/Input";
-import ListBooks from "./components/ListBooks";
+
+import React from "react";
 import { LC_BOOKS } from "./utils/constants";
+import ListBooks from "./components/ListBooks/ListBooks";
+import RegistBooks from "./components/RegistBooks";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 /**
  * List books
@@ -32,47 +36,15 @@ function saveBook(title, isbn, publicationDate, description) {
 /**
  * Regist books
  */
-function RegistBooks(props) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [isbn, setIsbn] = useState("");
-  const [publicationDate, setPublicationDate] = useState("");
-
-  return (
-    <>
-      <h1>Regist book</h1>
-
-      <Input label="Title" type="text" setValue={setTitle} />
-      <Input label="ISBN" type="text" setValue={setIsbn} />
-      <Input
-        label="Publication date"
-        type="date"
-        setValue={setPublicationDate}
-      />
-      <Input label="Description" type="text" setValue={setDescription} />
-
-      <div className="field">
-        <div className="control">
-          <button
-            className="button is-primary"
-            onClick={() =>
-              props.saveBook(title, isbn, publicationDate, description)
-            }
-          >
-            Save
-          </button>
-        </div>
-      </div>
-    </>
-  );
-}
 
 function App() {
   return (
     <div className="app-container">
-      <h1>Book Database</h1>
-      <ListBooks data={listBooks()}></ListBooks>
-      <RegistBooks saveBook={saveBook}></RegistBooks>
+      <Sidebar></Sidebar>
+      <div className="app-container__content">
+        <ListBooks data={listBooks()}></ListBooks>
+        {/* <RegistBooks saveBook={saveBook}></RegistBooks> */}
+      </div>
     </div>
   );
 }
