@@ -1,10 +1,12 @@
 /**
  * Regist Books
  */
-import React, { useState } from "react";
 import Input from "./Input.jsx";
+import { connect } from "react-redux";
+import React, { useState } from "react";
+import { addBook } from "../store/actions";
 
-export default function (props) {
+const RegistBooks = (props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [isbn, setIsbn] = useState("");
@@ -37,4 +39,15 @@ export default function (props) {
       </div>
     </>
   );
-}
+};
+
+/**
+ * Map dispatch to props
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddingBook: (book) => addBook(book),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(RegistBooks);
