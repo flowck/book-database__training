@@ -2,15 +2,17 @@
  * Store
  */
 
-import books from "./books";
-import { combineReducers, createStore } from "redux";
+import { books, isLoading } from "./reducers";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 
-const rootReducer = combineReducers({ books });
+const rootReducer = combineReducers({ books, isLoading });
 
 /**
- * Export reducer
+ * Export store
  */
 export default createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeWithDevTools(applyMiddleware(thunk))
 );
