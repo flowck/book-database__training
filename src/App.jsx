@@ -3,27 +3,43 @@
  */
 import "./assets/css/App.scss";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ListBooks from "./components/ListBooks/ListBooks";
-// import RegistBooks from "./components/RegistBooks";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { connect } from "react-redux";
-// import {} from "./store/actions";
 import { getBooksRequest } from "./store/thunks";
+import RegistBooks from "./components/RegistBooks/RegistBooks";
 
 /**
  * Regist books
  */
 
 function App({ listBooks, books }) {
+  /**
+   * Get data
+   */
   useEffect(() => {
     listBooks();
-    console.log(books);
   }, [listBooks]);
+
+  /**
+   * State properties
+   */
+  const [registBooksModal, setRegistBooksModal] = useState(false);
+
+  /**
+   * Methods
+   */
+  const toggleRegistBooksModal = () => setRegistBooksModal(!registBooksModal);
 
   return (
     <div className="app-container">
-      <Sidebar></Sidebar>
+      <Sidebar onOpenModal={toggleRegistBooksModal}></Sidebar>
+
+      {registBooksModal ? (
+        <RegistBooks onCloseModal={toggleRegistBooksModal} />
+      ) : null}
+
       <div className="app-container__content">
         <ListBooks books={books}></ListBooks>
       </div>

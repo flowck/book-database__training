@@ -1,6 +1,6 @@
 import "./ListBooks.scss";
+import React from "react";
 import Book from "../Book/Book";
-import React, { useState } from "react";
 
 /**
  * ListBooks
@@ -8,7 +8,7 @@ import React, { useState } from "react";
  * @property {string} name - List name
  * @property {Component}
  */
-export default function ({ books, name }) {
+export default function ({ books }) {
   return (
     <>
       <h1 className="app-list-books__title">List books</h1>
